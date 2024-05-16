@@ -26,6 +26,7 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSpr
 })
 info.onLifeZero(function () {
     game.gameOver(false)
+    info.changeScoreBy(info.highScore())
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
