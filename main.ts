@@ -1,5 +1,5 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile = sprites.createProjectileFromSprite(img`
+    Laser = sprites.createProjectileFromSprite(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -17,8 +17,8 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, mySprite, 50, 50)
-    music.play(music.createSoundEffect(WaveShape.Square, 1600, 5000, 255, 255, 300, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
-    projectile.follow(myEnemy)
+    music.play(music.createSoundEffect(WaveShape.Square, 5000, 1, 255, 255, 300, SoundExpressionEffect.None, InterpolationCurve.Logarithmic), music.PlaybackMode.UntilDone)
+    Laser.follow(myEnemy)
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
@@ -42,8 +42,9 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     info.changeScoreBy(1)
 })
 let myEnemy: Sprite = null
-let projectile: Sprite = null
+let Laser: Sprite = null
 let mySprite: Sprite = null
+music.play(music.createSong(hex`0078000408040100001c00010a006400f401640000040000000000000000000000000005000004a1000400080004141e222708000c0002082a0c001000011e10001400011214001800030816251c00200002222720002400020d1424002800010a28002c0001292c00300002112230003400030c112734003800011238003c00010c3c004000012744004800030812254c005000040c111e2a54005800040814202958005c00020c165c006000012560006400021b2c68006c00022025740078000220277c0080000124`), music.PlaybackMode.LoopingInBackground)
 info.startCountdown(40)
 tiles.setCurrentTilemap(tilemap`level2`)
 mySprite = sprites.create(img`
@@ -104,5 +105,5 @@ game.onUpdateInterval(1000, function () {
         ........................
         `, SpriteKind.Enemy)
     myEnemy.setPosition(18, 17)
-    myEnemy.follow(mySprite, 35)
+    myEnemy.follow(mySprite, 75)
 })

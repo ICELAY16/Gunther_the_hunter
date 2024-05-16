@@ -4,7 +4,8 @@
     "dependencies": {
         "device": "*",
         "animation": "*",
-        "multiplayer": "*"
+        "multiplayer": "*",
+        "darts": "*"
     },
     "files": [
         "main.blocks",
