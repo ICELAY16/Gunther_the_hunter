@@ -24,6 +24,10 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSpr
     sprites.destroy(otherSprite)
     game.gameOver(false)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    sprites.destroy(otherSprite)
+    game.gameOver(true)
+})
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(sprite)
     sprites.destroy(otherSprite)
@@ -61,6 +65,25 @@ mySprite = sprites.create(img`
 mySprite.setPosition(115, 88)
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
+let mySprite2 = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . e . . . . . e . . . . . 
+    . . . . . 5 . . . 5 . . . . . . 
+    . . . . . . 5 5 5 . . . . . . . 
+    . . . . . . f 5 f . . . . . . . 
+    . . . . . . 5 5 5 . . . . . . . 
+    . . . . . . 2 5 2 . . . . . . . 
+    . . . . . . 5 5 5 . . . . . . . 
+    . . . . . . 5 5 5 . . . . . . . 
+    . . . . . . 5 . 5 . . . . . . . 
+    . . . . . . 5 . 5 . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food)
+mySprite2.setPosition(157, 114)
 game.onUpdateInterval(1000, function () {
     myEnemy = sprites.create(img`
         ........................
