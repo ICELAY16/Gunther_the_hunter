@@ -39,6 +39,7 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
 let myEnemy: Sprite = null
 let projectile: Sprite = null
 let mySprite: Sprite = null
+info.startCountdown(40)
 tiles.setCurrentTilemap(tilemap`level2`)
 mySprite = sprites.create(img`
     .......ff...............
