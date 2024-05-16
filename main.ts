@@ -22,6 +22,9 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(otherSprite)
+    info.changeLifeBy(-1)
+})
+info.onLifeZero(function () {
     game.gameOver(false)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
@@ -31,6 +34,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(sprite)
     sprites.destroy(otherSprite)
+    info.changeScoreBy(1)
 })
 let myEnemy: Sprite = null
 let projectile: Sprite = null
@@ -62,6 +66,7 @@ mySprite = sprites.create(img`
     ........................
     ........................
     `, SpriteKind.Player)
+info.setLife(3)
 mySprite.setPosition(115, 88)
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
