@@ -2,7 +2,9 @@
     "name": "Gunther_The_Hunter",
     "description": "",
     "dependencies": {
-        "device": "*"
+        "device": "*",
+        "animation": "*",
+        "multiplayer": "*"
     },
     "files": [
         "main.blocks",

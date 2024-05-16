@@ -24,6 +24,10 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Enemy, function (sprite, otherSpr
     sprites.destroy(otherSprite)
     info.changeLifeBy(-1)
 })
+info.onCountdownEnd(function () {
+    game.gameOver(true)
+    info.changeScoreBy(info.highScore())
+})
 info.onLifeZero(function () {
     game.gameOver(false)
     info.changeScoreBy(info.highScore())
@@ -72,25 +76,6 @@ info.setLife(3)
 mySprite.setPosition(115, 88)
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
-let mySprite2 = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . e . . . . . e . . . . . 
-    . . . . . 5 . . . 5 . . . . . . 
-    . . . . . . 5 5 5 . . . . . . . 
-    . . . . . . f 5 f . . . . . . . 
-    . . . . . . 5 5 5 . . . . . . . 
-    . . . . . . 2 5 2 . . . . . . . 
-    . . . . . . 5 5 5 . . . . . . . 
-    . . . . . . 5 5 5 . . . . . . . 
-    . . . . . . 5 . 5 . . . . . . . 
-    . . . . . . 5 . 5 . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Food)
-mySprite2.setPosition(157, 114)
 game.onUpdateInterval(1000, function () {
     myEnemy = sprites.create(img`
         ........................
